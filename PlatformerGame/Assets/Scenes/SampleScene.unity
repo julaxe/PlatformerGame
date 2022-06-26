@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 1861316610}
   - component: {fileID: 1861316609}
   - component: {fileID: 1861316608}
-  - component: {fileID: 1861316612}
+  - component: {fileID: 1861316619}
   - component: {fileID: 1861316611}
   - component: {fileID: 1861316614}
   - component: {fileID: 1861316613}
@@ -1049,27 +1049,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.74}
   m_Size: {x: 0.57, y: 1.41}
   m_Direction: 0
---- !u!50 &1861316612
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861316607}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!114 &1861316613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,3 +1225,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c24a04f5d14960b5aa8a6a2c27e934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 1861316619}
+  _animator: {fileID: 1861316608}
+  _jumpPlayer: {fileID: 1861316617}
+--- !u!50 &1861316619
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861316607}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
