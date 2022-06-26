@@ -8,6 +8,7 @@ namespace DefaultNamespace
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Animator _animator;
         [SerializeField] private JumpPlayer _jumpPlayer;
+        
         private static readonly int GroundedHash = Animator.StringToHash("Grounded");
         private static readonly int JumpHash = Animator.StringToHash("Jump");
         private static readonly int AirSpeedYHash = Animator.StringToHash("AirSpeedY");

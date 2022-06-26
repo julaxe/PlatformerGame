@@ -11,13 +11,7 @@ namespace DefaultNamespace
         
         public void OnFire(InputValue value)
         {
-            if (playerHealth.currentHealth == 0) return;
-            
-            playerHealth.currentHealth -= damage;
-            if (playerHealth.currentHealth < 0)
-            {
-                playerHealth.currentHealth = 0;
-            } 
+            playerHealth.OnTakeDamage(damage);
         }
     }
 }
