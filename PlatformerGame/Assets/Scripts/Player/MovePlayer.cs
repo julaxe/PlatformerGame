@@ -1,15 +1,15 @@
-using System;
+using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace DefaultNamespace
+namespace Player
 {
     public class MovePlayer : MonoBehaviour
     {
         [SerializeField] private VectorSO playerPosition;
-        [SerializeField] private float speed;
+        [SerializeField] private PlayerStats _playerStats;
         private Rigidbody2D _rigidbody;
         private PlayerInputController _playerController;
+        private bool _inputBlocked = false;
         
         private void Awake()
         {
@@ -17,21 +17,47 @@ namespace DefaultNamespace
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            if (!_playerController.direction.Equals(Vector2.zero))
-            {
-                _rigidbody.velocity = new Vector2(_playerController.direction.x * speed, _rigidbody.velocity.y);
-                transform.localScale = _rigidbody.velocity.x switch
-                {
-                    > 0 => new Vector3(1.0f, transform.localScale.y, transform.localScale.z),
-                    < 0 => new Vector3(-1.0f, transform.localScale.y, transform.localScale.z),
-                    _ => transform.localScale
-                };
-            }
-
+            UpdateVelocityIfThereIsInput();
+            
             playerPosition.position = transform.position;
         }
-        
+
+        private void UpdateVelocityIfThereIsInput()
+        {
+            if (!_playerController.direction.Equals(Vector2.zero) && !_inputBlocked)
+            {
+                UpdateVelocity();
+                UpdateFacingSide();
+            }
+        }
+
+        private void UpdateVelocity()
+        {
+            var desiredVelocityX = _playerStats.maxSpeed * _playerController.direction.x;
+            var desiredVelocity = new Vector2(desiredVelocityX, _rigidbody.velocity.y);
+            _rigidbody.velocity = Vector2.Lerp(_rigidbody.velocity, desiredVelocity, _playerStats.acceleration);
+        }
+        private void UpdateFacingSide()
+        {
+            transform.localScale = _rigidbody.velocity.x switch
+            {
+                > 0 => new Vector3(1.0f, transform.localScale.y, transform.localScale.z),
+                < 0 => new Vector3(-1.0f, transform.localScale.y, transform.localScale.z),
+                _ => transform.localScale
+            };
+        }
+
+        public void StopInput()
+        {
+            _inputBlocked = true;
+        }
+
+        public void ResumeInput()
+        {
+            _inputBlocked = false;
+        }
+
     }
 }

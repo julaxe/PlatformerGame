@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    [CreateAssetMenu(fileName = "VectorSO", menuName = "VectorSO", order = 0)]
+    [CreateAssetMenu(fileName = "VectorSO", menuName = "Global/VectorSO", order = 0)]
     public class VectorSO : ScriptableObject
     {
         public Vector2 position;

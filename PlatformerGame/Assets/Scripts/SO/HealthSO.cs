@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "HealthSO", menuName = "HealthSO", order = 0)]
+[CreateAssetMenu(fileName = "HealthSO", menuName = "Global/HealthSO", order = 0)]
 public class HealthSO : ScriptableObject
 {
     public float currentHealth;

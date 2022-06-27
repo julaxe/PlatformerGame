@@ -13,5 +13,5 @@ public class PlayerInputController : MonoBehaviour
         direction = value.Get<Vector2>();
         direction = direction.normalized;
     }
-    
+
 }

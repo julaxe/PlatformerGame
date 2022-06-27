@@ -1,18 +1,18 @@
-using System;
-using System.Numerics;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-namespace DefaultNamespace
+namespace Player
 {
     public class JumpPlayer : MonoBehaviour
     {
         //serializable fields
-        [SerializeField] private float jumpForce;
-        [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private PlayerStats playerStats; 
+        [SerializeField] private LayerMask layerMask;
         
         //components ref
         private Rigidbody2D _rigidbody2D;
@@ -46,7 +46,7 @@ namespace DefaultNamespace
             if (isGrounded)
             {
                 isGrounded = false;
-                _rigidbody2D.velocity += new Vector2(0.0f, jumpForce);
+                _rigidbody2D.velocity += new Vector2(0.0f, playerStats.jumpYVelocity);
                 jumpEvent?.Invoke();
             }
         }
@@ -59,7 +59,7 @@ namespace DefaultNamespace
         {
             var start = transform.position + (Vector3.up * 0.1f);
             
-            return Physics2D.Raycast(start, Vector3.down, _distToGround, _layerMask);
+            return Physics2D.Raycast(start, Vector3.down, _distToGround, layerMask);
         }
         
         
